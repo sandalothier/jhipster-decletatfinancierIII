@@ -1,0 +1,242 @@
+/**
+ * RemunerationOrganeDirection entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *         OneToOne avec IntituleEtatFinancier
+ */
+entity RemunerationOrganeDirection {
+    montant Double
+}
+/**
+ * Reintegration entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *         OneToOne avec IntituleEtatFinancier
+ */
+entity Reintegration {
+    montantReintegre Double
+}
+/**
+ * Deduction entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *         OneToOne avec IntituleEtatFinancier
+ */
+entity Deduction {
+    montantDeduit Double
+}
+/**
+ * ResultatFiscal entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *         OneToOne avec IntituleEtatFinancier
+ */
+entity ResultatFiscal {
+    montant Double
+}
+/**
+ * LiquidationImpot entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *         OneToOne avec IntituleEtatFinancier
+ */
+entity LiquidationImpot {
+    montant Double
+}
+/**
+ * PrelevementSource entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *         OneToOne avec IntituleEtatFinancier
+ */
+entity PrelevementSource {
+    montant Double
+}
+/**
+ * PrelevementSource entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity TerrainRenseignement {
+    localite String
+    nomTerrain String
+    valeur Double
+}
+/**
+ * BatimentRenseignement entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity BatimentRenseignement {
+    localite String
+    nomTerrain String
+    valeur Double
+}
+/**
+ * Loyer entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity Loyer {
+    localite String
+    chiffreAffaire Double
+    valeur Double
+}
+/**
+ * DetailChargeEnCFA entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity DetailChargeEnCFA {
+    numeroCpte String
+    montant Double
+}
+/**
+ * DetailProduitEnCFA entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity DetailProduitEnCFA {
+    numeroCpte String
+    montant Double
+}
+/**
+ * DetailProduitEnCFA entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ */
+entity DeficitReportable {
+    numeroCpte String
+    deficitReportable Double
+    deficitImpute Double
+    deficitRestant Double
+}
+/**
+ * DetailProduitEnCFA entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *        ManyToOne avec IntituleEtatFinancier
+ */
+entity AmortissementReputeDiffere {
+    montant Double
+}
+/**
+ * TableauImf entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *        ManyToOne avec IntituleEtatFinancier
+ */
+entity TableauImf {
+    imf Boolean
+    dateCloture Date
+    entiteReportable Double
+    entitePaye Double
+    totalEntite Double
+    entiteImputeExo Double
+    entiteRestantAReporter Double
+}
+/**
+ * TableauDesAmortissement entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *        ManyToOne avec IntituleEtatFinancier
+ */
+entity TableauDesAmortissement {
+    refImmo String
+    designationImmo String
+    dateMiseService Date
+    tauxAmort Double
+    valeurBrute Double
+    elementSortie Double
+    amortCummulOuverture Double
+    augmentDotationExo Double
+    diminutionSortie Double
+    cummulAmortCloture Double
+    elementCede Double
+    plusOuMoinsValue Double
+}
+/**
+ * ExploitantIndividuel entity.
+ * @author sanda
+ * Relation
+ *     ManyToOne avec EtatFinancier
+ *        ManyToOne avec IntituleEtatFinancier
+ */
+entity ExploitantIndividuel {
+    apportFinanCourant Double
+    prelevFinanCourantExo Double
+    avantEnNature Double
+    remunerationConjExploitant Double
+}
+relationship OneToMany {
+    EtatFinancier to RemunerationOrganeDirection
+}
+relationship OneToMany {
+    EtatFinancier to Reintegration
+}
+relationship OneToMany {
+    EtatFinancier to Deduction
+}
+relationship OneToMany {
+    EtatFinancier to ResultatFiscal
+}
+relationship OneToMany {
+    EtatFinancier to LiquidationImpot
+}
+relationship OneToMany {
+    EtatFinancier to PrelevementSource
+}
+relationship OneToMany {
+    EtatFinancier to TerrainRenseignement
+}
+relationship OneToMany {
+    EtatFinancier to BatimentRenseignement
+}
+relationship OneToMany {
+    EtatFinancier to Loyer
+}
+relationship OneToMany {
+    EtatFinancier to DeficitReportable
+}
+relationship OneToMany {
+    EtatFinancier to AmortissementReputeDiffere
+}
+relationship OneToMany {
+    EtatFinancier to TableauImf
+}
+relationship OneToMany {
+    EtatFinancier to TableauDesAmortissement
+}
+relationship OneToMany {
+    EtatFinancier to DetailChargeEnCFA
+}
+relationship OneToMany {
+    EtatFinancier to DetailProduitEnCFA
+}
+relationship OneToMany {
+    EtatFinancier to ExploitantIndividuel
+}
+// Set pagination options
+paginate RemunerationOrganeDirection,Reintegration, Deduction, ResultatFiscal  with infinite-scroll
+paginate LiquidationImpot, PrelevementSource, TerrainRenseignement, BatimentRenseignement, Loyer, DetailChargeEnCFA, DetailProduitEnCFA, DeficitReportable, AmortissementReputeDiffere, TableauImf, TableauDesAmortissement, ExploitantIndividuel with pagination
+// Use Data Transfert Objects (DTO)
+dto RemunerationOrganeDirection,Reintegration, Deduction, ResultatFiscal, LiquidationImpot, PrelevementSource, TerrainRenseignement, BatimentRenseignement, Loyer, DetailChargeEnCFA, DetailProduitEnCFA, DeficitReportable, AmortissementReputeDiffere, TableauImf, TableauDesAmortissement, ExploitantIndividuel with mapstruct
+// Set service options to all except few
+service all with serviceImpl except EtatFinancier, IntituleEtat, IntituleBilan,  PlanComptable
+// Set an angular suffix
+// angularSuffix * with mySuffix
